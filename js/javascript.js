@@ -1,3 +1,7 @@
+let playerScore = 0;
+let computerScore = 0;
+let roundNum = 1;
+
 function getComputerChoice() {
     let choice = ['rock', 'paper', 'scissors'];
     let random = choice[Math.floor(Math.random() * choice.length)];
@@ -13,10 +17,12 @@ function playRound(playerSelection, getComputerSelection) {
         }
         else if (getComputerSelection == 'paper')
         {
+            computerScore++;
             return "You lose!";
         }
         else
         {
+            playerScore++;
             return "You win!";
         }
     }
@@ -24,6 +30,7 @@ function playRound(playerSelection, getComputerSelection) {
     {
         if (getComputerSelection == 'rock')
         {
+            playerScore++;
             return "You win!";
         }
         else if (getComputerSelection == 'paper')
@@ -32,6 +39,7 @@ function playRound(playerSelection, getComputerSelection) {
         }
         else
         {
+            computerScore++;
             return "You lose!";
         }
     }
@@ -39,10 +47,12 @@ function playRound(playerSelection, getComputerSelection) {
     {
         if (getComputerSelection == 'rock')
         {
+            computerScore++;
             return "You lose!";
         }
         else if (getComputerSelection == 'paper')
         {
+            playerScore++;
             return "You win!";
         }
         else
@@ -52,19 +62,46 @@ function playRound(playerSelection, getComputerSelection) {
     }
 
 }
-const getComputerSelection = getComputerChoice();
-let string = prompt("Enter Rock, Paper, Scissors");
-playerSelection = string.toLowerCase();
-if (playerSelection == 'rock' || playerSelection == 'paper' || playerSelection == 'scissors')
-{
-    console.log(playerSelection, getComputerSelection);
+
+function getUserChoice() {
+    return prompt('ROUND ' + roundNum + '\nEnter Rock, Paper, Scissors');
 }
 
 function game(){
     for (let i = 0; i < 5; i++)
     {
-        playRound(playerSelection, getComputerSelection);
+        let playerSelection = getUserChoice();
+        playerSelection = playerSelection.toLocaleLowerCase();
+        let getComputerSelection = getComputerChoice();
+        if ((playerSelection === 'rock') || (playerSelection === 'paper') || (playerSelection === 'scissors'))
+        {
+            playRound(playerSelection, getComputerSelection);
+            ++roundNum;
+        }
+        else {
+            i--;
+            continue;
+        }
+        
+        if (i == 4)
+        {
+            if (playerScore > computerScore)
+            {
+                console.log("Player: " + playerScore, "Computer: " + computerScore);
+                console.log("You Win!");
+            }
+            else if (playerScore < computerScore)
+            {
+                console.log("Player: " + playerScore, "Computer: " + computerScore);
+                console.log("You Lose!")
+            }
+            else
+            {
+                console.log("Player: " + playerScore, "Computer: " + computerScore);
+                console.log("Tie game!")
+            }
+        }
     }
 }
 
-
+game();
