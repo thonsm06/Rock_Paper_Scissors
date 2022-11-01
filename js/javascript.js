@@ -63,14 +63,16 @@ function playRound(playerSelection, getComputerSelection) {
 
 }
 
-window.addEventListener('click', function(e) {
-    const button = document.querySelector('.button');
-})
-
-const buttons = document.querySelectorAll('.button');
-buttons.forEach(button => button.addEventListener('click', function (e){
-    console.log(e);
+function result(value, computerValue) {
+    const string = document.querySelector('.result');
+    string.innerHTML = "Result: Player " + value + " | " + "Computer " + computerValue;
+}
+const buttons = document.querySelectorAll('button')
+buttons.forEach(button => button.addEventListener('click', function() {
+    result(button.value, getComputerChoice());
+    playRound(button.value, getComputerChoice())
 }));
+
 
 /*
 function game(){
