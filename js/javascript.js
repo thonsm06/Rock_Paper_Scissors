@@ -63,10 +63,16 @@ function playRound(playerSelection, getComputerSelection) {
 
 }
 
-function getUserChoice() {
-    return prompt('ROUND ' + roundNum + '\nEnter Rock, Paper, Scissors');
-}
+window.addEventListener('click', function(e) {
+    const button = document.querySelector('.button');
+})
 
+const buttons = document.querySelectorAll('.button');
+buttons.forEach(button => button.addEventListener('click', function (e){
+    console.log(e);
+}));
+
+/*
 function game(){
     for (let i = 0; i < 5; i++)
     {
@@ -103,5 +109,5 @@ function game(){
         }
     }
 }
-
-game();
+*/
+//game();
