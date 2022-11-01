@@ -19,7 +19,7 @@ function playRound(playerSelection, getComputerSelection) {
         result = "You win this round";
         if (playerScore === 5)
         {
-            result += "<br>You WIN the game";
+            result = "You WIN the game<br>" + result;
             disabled();
         }
     }
@@ -35,7 +35,7 @@ function playRound(playerSelection, getComputerSelection) {
         result = "You lose this round";
         if (computerScore === 5)
         {
-            result += "<br>You LOSE the game";
+            result = "<br>You LOSE the game<br>"+result;
             disabled();
         }
     }
@@ -51,9 +51,9 @@ function displayResult(value, computerValue, result) {
     content.classList.add('content')
     content.textContent = result;
     resultString.appendChild(content)
-    resultString.innerHTML = content.textContent + " Player " + value + " | " + "Computer " + computerValue;
+    resultString.innerHTML = content.textContent + "<br>Player " + value + " | " + "Computer " + computerValue;
 }
-const buttons = document.querySelectorAll('button')
+const buttons = document.querySelectorAll('.button')
 buttons.forEach(button => button.addEventListener('click', function() {
     const getComputerSelection = getComputerChoice();
     const result = playRound(button.value, getComputerSelection);
@@ -69,3 +69,5 @@ function disabled() {
         e.disabled = true;
     })
 }
+
+
